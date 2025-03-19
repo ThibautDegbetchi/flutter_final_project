@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => TimeEntryProvider(localStorage)),
-        ChangeNotifierProvider(create: (_) => ProjectTaskProvider(localStorage)),
+        // ChangeNotifierProvider(create: (_) => ProjectTaskProvider(localStorage)),
         ChangeNotifierProvider(create: (_) => TaskProvider(localStorage)),
         ChangeNotifierProvider(create: (_) => ProjectProvider(localStorage)),
       ],
