@@ -35,10 +35,13 @@ class TimeEntryProvider with ChangeNotifier {
   void _loadTimeEntryFromStorage() {
     var storedExpenses = storage.getItem('entries');
     if (storedExpenses != null) {
-      _entries = List<TimeEntry>.from(
-        (storedExpenses as List).map((item) => TimeEntry.fromJson(item)),
-      );
-      notifyListeners();
+      var decodedTasks = jsonDecode(storedExpenses);
+      if (decodedTasks != null) {
+        _entries = List<TimeEntry>.from(
+          (decodedTasks as List).map((item) => TimeEntry.fromJson(item)),
+        );
+        notifyListeners();
+      }
     }
   }
   void _saveTimeEntryToStorage() {

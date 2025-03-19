@@ -6,7 +6,7 @@ class Project {
   Map<String, dynamic> toJson() {
     return {
       'id': id,
-      'amount': name,
+      'name': name,
     };
   }
 

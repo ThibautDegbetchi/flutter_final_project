@@ -20,16 +20,20 @@ class ProjectTaskProvider with ChangeNotifier {
   }
 
   void _loadProjectFromStorage() {
-    var storedExpenses = storage.getItem('projects');
+    var storedExpenses = storage.getItem('projectsTasks');
     if (storedExpenses != null) {
-      _projects = List<Project>.from(
-        (storedExpenses as List).map((item) => Project.fromJson(item)),
-      );
-      notifyListeners();
+
+      var decodedTasks = jsonDecode(storedExpenses);
+      if (decodedTasks != null) {
+        _projects = List<Project>.from(
+          (decodedTasks as List).map((item) => Project.fromJson(item)),
+        );
+        notifyListeners();
+      }
     }
   }
   void _saveProjectToStorage() {
-    storage.setItem('projects', jsonEncode(_projects));
+    storage.setItem('projectsTasks', jsonEncode(_projects.map((e) => e.toJson()).toList()));
   }
 
 
