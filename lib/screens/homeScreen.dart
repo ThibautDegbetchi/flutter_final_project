@@ -167,6 +167,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         margin: EdgeInsets.all(10),
                         elevation: 0.7,
                         child: ExpansionTile(
+                          shape: Border.all(color: Colors.transparent), // Supprime les bordures
                           title: Text(
                             project.name,
                             style: TextStyle(
@@ -176,21 +177,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           children: entries.map((entry) {
                             final task = provider.findTaskNyId(entry.taskId, context);
                             return ListTile(
-                              title: Text('${task.name}'),
-                              subtitle: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text('Total Time: ${entry.totalTime.toInt()} hours'),
-                                  Text('Date: ${formatDate(entry.date)}'),
-                                  Text('Note: ${entry.notes}'),
-                                ],
-                              ),
-                              trailing: IconButton(
-                                onPressed: () {
-                                  provider.deleteTimeEntry(entry.id);
-                                },
-                                icon: Icon(Icons.delete, color: Colors.red),
-                              ),
+                              title: Text('${task.name}: ${entry.totalTime.toInt()} hours (${formatDate(entry.date)})'),
                             );
                           }).toList(),
                         ),
