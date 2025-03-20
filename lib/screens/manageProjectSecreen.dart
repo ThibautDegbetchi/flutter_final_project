@@ -41,10 +41,11 @@ class _ManageProjectScreenState extends State<ManageProjectScreen> {
         foregroundColor: Colors.white,
         onPressed: () {
           // Navigate to the screen to add a new time entry
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => AddTaskDialog(project: true,)),
-          );
+          // Navigator.push(
+          //   context,
+          //   MaterialPageRoute(builder: (context) => AddTaskDialog(project: true,)),
+          // );
+          showDialogBox(true, context);
         },
         child: Icon(Icons.add),
         tooltip: 'Add project',
